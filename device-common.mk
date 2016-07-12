@@ -89,6 +89,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_large_cache_width=4096 \
     ro.hwui.text_large_cache_height=4096
 
+# enable FIFO UI scheduling by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.use_fifo_ui=1
+
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += fs_config_files \
                     fs_config_dirs
