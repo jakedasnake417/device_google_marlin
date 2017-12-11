@@ -2,6 +2,7 @@
 #
 # Product-specific compile-time definitions
 #
+ANDROID_TOP := $(shell pwd)
 
 TARGET_BOARD_PLATFORM := msm8996
 TARGET_BOOTLOADER_BOARD_NAME := sailfish
@@ -103,6 +104,19 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIR := device/google/marlin/sepolicy/private
 
 BOARD_EGL_CFG := device/google/marlin/egl.cfg
 
+# Inline kernel
+TARGET_KERNEL_CLANG_VERSION := 8.0
+TARGET_KERNEL_CLANG_PATH := $(ANDROID_TOP)/prebuilts/clang/host/$(HOST_OS)-x86/$(TARGET_KERNEL_CLANG_VERSION)/bin
+KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
+TARGET_KERNEL_SOURCE := kernel/google/marlin
+TARGET_KERNEL_CONFIG := benzo_defconfig
+TARGET_KERNEL_APPEND_DTB := true
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_COMPILE_WITH_MSM_KERNEL := true
+TARGET_USES_UNCOMPRESSED_KERNEL := false
+BOARD_KERNEL_IMAGE_NAME := Image.lz4-dtb
+
 BOARD_KERNEL_BASE        := 0x80000000
 BOARD_KERNEL_PAGESIZE    := 4096
 ifneq ($(filter sailfish_kasan, $(TARGET_PRODUCT)),)
@@ -114,11 +128,6 @@ else
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
 BOARD_RAMDISK_OFFSET     := 0x02200000
 endif
-
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_USES_UNCOMPRESSED_KERNEL := false
 
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
@@ -154,9 +163,6 @@ CAMERA_DAEMON_NOT_PRESENT := true
 
 #TARGET_LDPRELOAD := libNimsWrap.so
 
-# TARGET_COMPILE_WITH_MSM_KERNEL := true
-
-TARGET_KERNEL_APPEND_DTB := true
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := false
 
