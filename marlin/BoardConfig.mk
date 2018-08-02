@@ -113,7 +113,7 @@ BOARD_EGL_CFG := device/google/marlin/egl.cfg
 
 # Inline kernel
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := 6.0
+TARGET_KERNEL_CLANG_VERSION := 7.0
 TARGET_KERNEL_CLANG_PATH := $(ANDROID_BUILD_TOP)/prebuilts/clang/host/$(HOST_OS)-x86/$(TARGET_KERNEL_CLANG_VERSION)/bin
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/google/marlin
